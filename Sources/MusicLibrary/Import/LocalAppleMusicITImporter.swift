@@ -6,7 +6,6 @@ import iTunesLibrary
 /// the iTunes Library framework. Only for macOS.
 public struct LocalAppleMusicITImporter: LibraryImporter {
     private let itLib: ITLibrary
-    private let indexing: Indexing<NSNumber> = .init()
 
     public init(itLib: ITLibrary) {
         self.itLib = itLib
@@ -17,7 +16,8 @@ public struct LocalAppleMusicITImporter: LibraryImporter {
     }
 
     public func readLibrary() throws -> Library {
-        try Library(itLib, indexing: indexing)
+        let indexing: Indexing<NSNumber> = .init()
+        return try Library(itLib, indexing: indexing)
     }
 }
 
