@@ -2,7 +2,7 @@
 
 public typealias LocalAppleMusicImporter = LocalAppleMusicITImporter
 
-#elseif canImport(MediaPlayer)
+#elseif os(iOS) || targetEnvironment(macCatalyst)
 
 public typealias LocalAppleMusicImporter = LocalAppleMusicMPImporter
 

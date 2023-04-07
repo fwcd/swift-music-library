@@ -1,4 +1,4 @@
-#if canImport(MediaPlayer)
+#if os(iOS) || targetEnvironment(macCatalyst)
 
 import MediaPlayer
 
