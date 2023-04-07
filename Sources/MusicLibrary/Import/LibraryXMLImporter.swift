@@ -4,11 +4,7 @@ public struct LibraryXMLImporter: LibraryImporter {
     public var data: Data
 
     public init(filePath: String) throws {
-        if #available(macOS 13.0, *) {
-            try self.init(url: URL(filePath: filePath))
-        } else {
-            try self.init(url: URL(fileURLWithPath: filePath))
-        }
+        try self.init(url: URL(fileURLWithPath: filePath))
     }
 
     public init(url: URL) throws {
