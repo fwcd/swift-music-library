@@ -11,6 +11,7 @@ public struct Playlist: Codable, Hashable, Identifiable {
         case parentPersistentId = "Parent Persistent ID"
         case allItems = "All Items"
         case isFolder = "Folder"
+        case isVisible = "Visible"
         case items = "Playlist Items"
     }
 
@@ -22,6 +23,7 @@ public struct Playlist: Codable, Hashable, Identifiable {
     public var parentPersistentId: String?
     public var allItems: Bool
     public var isFolder: Bool?
+    public var isVisible: Bool
     // TODO: Decode this using @CustomCodable, see https://github.com/cvzi/itunes_smartplaylist
     public var smartInfo: Data?
     public var smartCriteria: Data?
@@ -36,6 +38,7 @@ public struct Playlist: Codable, Hashable, Identifiable {
         parentPersistentId: String? = nil,
         allItems: Bool = true,
         isFolder: Bool? = nil,
+        isVisible: Bool = true,
         items: [TrackReference] = []
     ) {
         self.id = id
@@ -46,6 +49,7 @@ public struct Playlist: Codable, Hashable, Identifiable {
         self.parentPersistentId = parentPersistentId
         self.allItems = allItems
         self.isFolder = isFolder
+        self.isVisible = isVisible
         self.items = items
     }
 }
