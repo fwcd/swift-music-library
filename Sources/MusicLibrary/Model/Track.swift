@@ -50,6 +50,7 @@ public struct Track: Codable, Hashable, Identifiable {
     public var composer: String?
     public var genre: String?
     public var kind: String?
+    public var mediaKind: MediaKind?
     public var fileSize: UInt64?
     public var totalTime: Int?
     public var discNumber: Int?
@@ -89,6 +90,7 @@ public struct Track: Codable, Hashable, Identifiable {
         composer: String? = nil,
         genre: String? = nil,
         kind: String? = nil,
+        mediaKind: MediaKind? = nil,
         fileSize: UInt64? = nil,
         totalTime: Int? = nil,
         discNumber: Int? = nil,
@@ -127,6 +129,7 @@ public struct Track: Codable, Hashable, Identifiable {
         self.composer = composer
         self.genre = genre
         self.kind = kind
+        self.mediaKind = mediaKind
         self.fileSize = fileSize
         self.totalTime = totalTime
         self.discNumber = discNumber
