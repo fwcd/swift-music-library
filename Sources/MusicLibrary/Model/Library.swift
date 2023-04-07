@@ -3,9 +3,9 @@ import Foundation
 /// A music library.
 public struct Library: Codable, Hashable {
     public enum CodingKeys: String, CodingKey {
-        case majorVersion = "Major Version"
-        case minorVersion = "Minor Version"
-        case date = "Date"
+        case apiMajorVersion = "Major Version"
+        case apiMinorVersion = "Minor Version"
+        case lastModifiedDate = "Date"
         case applicationVersion = "Application Version"
         case features = "Features"
         case showContentRatings = "Show Content Ratings"
@@ -14,11 +14,11 @@ public struct Library: Codable, Hashable {
         case tracks = "Tracks"
     }
 
-    public var majorVersion: Int?
-    public var minorVersion: Int?
-    public var date: Date?
+    public var apiMajorVersion: Int?
+    public var apiMinorVersion: Int?
+    public var lastModifiedDate: Date?
     public var applicationVersion: String?
-    public var features: Int?
+    public var features: UInt?
     public var showContentRatings: Bool
     public var musicFolder: String?
     public var persistentId: String?
@@ -26,11 +26,11 @@ public struct Library: Codable, Hashable {
     public var playlists: [Playlist] = []
 
     public init(
-        majorVersion: Int? = nil,
-        minorVersion: Int? = nil,
-        date: Date? = nil,
+        apiMajorVersion: Int? = nil,
+        apiMinorVersion: Int? = nil,
+        lastModifiedDate: Date? = nil,
         applicationVersion: String? = nil,
-        features: Int? = nil,
+        features: UInt? = nil,
         showContentRatings: Bool = true,
         musicFolder: String? = nil,
         persistentId: String? = nil,
@@ -38,9 +38,9 @@ public struct Library: Codable, Hashable {
         playlists: [Playlist] = []
     ) {
         self.persistentId = persistentId
-        self.majorVersion = majorVersion
-        self.minorVersion = minorVersion
-        self.date = date
+        self.apiMajorVersion = apiMajorVersion
+        self.apiMinorVersion = apiMinorVersion
+        self.lastModifiedDate = lastModifiedDate
         self.applicationVersion = applicationVersion
         self.features = features
         self.showContentRatings = showContentRatings
