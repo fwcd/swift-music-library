@@ -18,7 +18,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - uses: fwal/setup-swift@v1
-      if: os.name != 'macos-latest'
+      if: matrix.os != 'macos-latest'
       with:
         swift-version: '5.7'
     - name: Build
