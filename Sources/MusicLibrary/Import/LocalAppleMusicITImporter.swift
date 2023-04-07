@@ -70,6 +70,8 @@ extension Track {
             trackNumber: item.trackNumber,
             trackCount: item.album.trackCount,
             year: item.year,
+            skipCount: item.skipCount,
+            skipDate: item.skipDate,
             bpm: item.beatsPerMinute,
             dateModified: item.modifiedDate,
             dateAdded: item.addedDate,

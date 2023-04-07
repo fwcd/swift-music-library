@@ -18,6 +18,8 @@ public struct Track: Codable, Hashable, Identifiable {
         case trackNumber = "Track Number"
         case trackCount = "Track Count"
         case year = "Year"
+        case skipCount = "Skip Count"
+        case skipDate = "Skip Date"
         case bpm = "BPM"
         case dateModified = "Date Modified"
         case dateAdded = "Date Added"
@@ -74,6 +76,10 @@ public struct Track: Codable, Hashable, Identifiable {
     public var trackCount: Int?
     /// The release year of the track.
     public var year: Int?
+    /// The number of times that the user skipped the media item.
+    public var skipCount: Int?
+    /// The date and time that the user last skipped the media item.
+    public var skipDate: Date?
     /// The beats-per-minute (BPM) of the track.
     public var bpm: Int?
     /// The date and time that iTunes last modified the track.
@@ -134,6 +140,8 @@ public struct Track: Codable, Hashable, Identifiable {
         trackNumber: Int? = nil,
         trackCount: Int? = nil,
         year: Int? = nil,
+        skipCount: Int? = nil,
+        skipDate: Date? = nil,
         bpm: Int? = nil,
         dateModified: Date? = nil,
         dateAdded: Date? = nil,
@@ -173,6 +181,8 @@ public struct Track: Codable, Hashable, Identifiable {
         self.trackNumber = trackNumber
         self.trackCount = trackCount
         self.year = year
+        self.skipCount = skipCount
+        self.skipDate = skipDate
         self.bpm = bpm
         self.dateModified = dateModified
         self.dateAdded = dateAdded
