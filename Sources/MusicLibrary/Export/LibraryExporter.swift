@@ -1,3 +1,3 @@
 public protocol LibraryExporter {
-    mutating func write(library: Library)
+    mutating func write(library: Library) throws
 }
