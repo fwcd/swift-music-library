@@ -8,3 +8,19 @@ A small library for programmatically interfacing with local music libraries, inc
 - The local iTunes/Apple Music library
 - iTunes-compatible XML files
 - The Mixxx library (WIP)
+
+## Example
+
+To export the local Apple Music library to an iTunes-compatible XML, use the following snippet:
+
+```swift
+import MusicLibrary
+
+let importer = try LocalAppleMusicImporter()
+let exporter = LibraryXMLExporter(filePath: "path/to/output.xml")
+
+let library = try importer.readLibrary()
+try exporter.write(library: library)
+```
+
+The full example can be found [here](Snippets/AppleMusicToLibraryXML.swift).
