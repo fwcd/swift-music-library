@@ -1,3 +1,3 @@
 # Swift Music Library
 
-A small library for programmatically fetching, parsing and exporting iTunes/Apple Music libraries as XML.
+A small library for programmatically interfacing with local music libraries.
