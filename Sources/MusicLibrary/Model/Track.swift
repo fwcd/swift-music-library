@@ -2,7 +2,7 @@ import Foundation
 
 /// A track/song.
 public struct Track: Codable, Hashable, Identifiable {
-    public var trackId: Int
+    public var id: Int
     public var name: String?
     public var artist: String?
     public var albumArtist: String?
@@ -38,10 +38,8 @@ public struct Track: Codable, Hashable, Identifiable {
     public var fileFolderCount: Int?
     public var libraryFolderCount: Int?
 
-    public var id: Int { trackId }
-
     public init(
-        trackId: Int,
+        id: Int,
         name: String? = nil,
         artist: String? = nil,
         albumArtist: String? = nil,
@@ -77,7 +75,7 @@ public struct Track: Codable, Hashable, Identifiable {
         fileFolderCount: Int? = nil,
         libraryFolderCount: Int? = nil
     ) {
-        self.trackId = trackId
+        self.id = id
         self.name = name
         self.artist = artist
         self.albumArtist = albumArtist

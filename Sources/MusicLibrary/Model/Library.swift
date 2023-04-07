@@ -23,6 +23,7 @@ public struct Library: Codable, Hashable {
     public var musicFolder: String?
     public var persistentId: String?
     public var tracks: [Int: Track]
+    public var playlists: [Playlist] = []
 
     public init(
         majorVersion: Int? = nil,
@@ -33,7 +34,8 @@ public struct Library: Codable, Hashable {
         showContentRatings: Bool = true,
         musicFolder: String? = nil,
         persistentId: String? = nil,
-        tracks: [Int: Track] = [:]
+        tracks: [Int: Track] = [:],
+        playlists: [Playlist] = []
     ) {
         self.persistentId = persistentId
         self.majorVersion = majorVersion
@@ -45,5 +47,6 @@ public struct Library: Codable, Hashable {
         self.musicFolder = musicFolder
         self.persistentId = persistentId
         self.tracks = tracks
+        self.playlists = playlists
     }
 }
