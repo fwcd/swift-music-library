@@ -13,6 +13,10 @@ public struct LibraryXMLExporter: LibraryExporter {
         }
     }
 
+    public init(filePath: String) {
+        self.init(url: URL(fileURLWithPath: filePath))
+    }
+
     public func write(library: Library) throws {
         let encoder = PropertyListEncoder()
         encoder.outputFormat = .xml

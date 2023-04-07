@@ -13,6 +13,10 @@ public struct LibraryJSONExporter: LibraryExporter {
         }
     }
 
+    public init(filePath: String) {
+        self.init(url: URL(fileURLWithPath: filePath))
+    }
+
     public func write(library: Library) throws {
         let encoder = JSONEncoder()
         encoder.outputFormatting = .prettyPrinted
