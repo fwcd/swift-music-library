@@ -76,7 +76,7 @@ public struct Track: Codable, Hashable, Identifiable {
     public var persistentId: String?
     public var isPurchased: Bool?
     public var location: String?
-    public var locationType: TrackType?
+    public var locationType: LocationType?
     public var fileFolderCount: Int?
     public var libraryFolderCount: Int?
 
@@ -115,7 +115,7 @@ public struct Track: Codable, Hashable, Identifiable {
         persistentId: String? = nil,
         isPurchased: Bool? = nil,
         location: String? = nil,
-        locationType: TrackType? = nil,
+        locationType: LocationType? = nil,
         fileFolderCount: Int? = nil,
         libraryFolderCount: Int? = nil
     ) {

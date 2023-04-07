@@ -79,12 +79,12 @@ extension Track {
             persistentId: String(format: "%llX", item.persistentID.uint64Value),
             isPurchased: item.isPurchased,
             location: item.location?.absoluteString,
-            locationType: TrackType(item.locationType)
+            locationType: LocationType(item.locationType)
         )
     }
 }
 
-extension TrackType {
+extension LocationType {
     init?(_ locationType: ITLibMediaItemLocationType) {
         switch locationType {
         case .file: self = .file

@@ -1,4 +1,4 @@
-public struct TrackType: RawRepresentable, Codable, Hashable {
+public struct LocationType: RawRepresentable, Codable, Hashable {
     public var rawValue: String
 
     public static var file = Self(rawValue: "File")
