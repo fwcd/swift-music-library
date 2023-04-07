@@ -55,7 +55,7 @@ extension Track {
         let id = indexing.index(for: item.persistentID)
         self.init(
             id: id,
-            name: item.title,
+            title: item.title,
             artist: item.artist?.name,
             albumArtist: item.album.albumArtist,
             album: item.album.title,
@@ -83,7 +83,7 @@ extension Track {
             artworkCount: item.hasArtworkAvailable ? 1 : 0,
             sortAlbum: item.album.sortTitle,
             sortArtist: item.artist?.sortName,
-            sortName: item.sortTitle,
+            sortTitle: item.sortTitle,
             sortComposer: item.sortComposer,
             persistentId: formatPersistentId(item.persistentID),
             isPurchased: item.isPurchased,

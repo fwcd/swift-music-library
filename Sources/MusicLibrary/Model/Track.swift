@@ -4,7 +4,7 @@ import Foundation
 public struct Track: Codable, Hashable, Identifiable {
     public enum CodingKeys: String, CodingKey {
         case id = "Track ID"
-        case name = "Name"
+        case title = "Name"
         case artist = "Artist"
         case albumArtist = "Album Artist"
         case album = "Album"
@@ -33,7 +33,7 @@ public struct Track: Codable, Hashable, Identifiable {
         case sortAlbum = "Sort Album"
         case sortArtist = "Sort Artist"
         case sortComposer = "Sort Composer"
-        case sortName = "Sort Name"
+        case sortTitle = "Sort Name"
         case persistentId = "Persistent ID"
         case isPurchased = "Purchased"
         case location = "Location"
@@ -43,7 +43,7 @@ public struct Track: Codable, Hashable, Identifiable {
     }
 
     public var id: Int
-    public var name: String?
+    public var title: String?
     public var artist: String?
     public var albumArtist: String?
     public var album: String?
@@ -71,7 +71,7 @@ public struct Track: Codable, Hashable, Identifiable {
     public var artworkCount: Int?
     public var sortAlbum: String?
     public var sortArtist: String?
-    public var sortName: String?
+    public var sortTitle: String?
     public var sortComposer: String?
     public var persistentId: String?
     public var isPurchased: Bool?
@@ -82,7 +82,7 @@ public struct Track: Codable, Hashable, Identifiable {
 
     public init(
         id: Int,
-        name: String? = nil,
+        title: String? = nil,
         artist: String? = nil,
         albumArtist: String? = nil,
         album: String? = nil,
@@ -110,7 +110,7 @@ public struct Track: Codable, Hashable, Identifiable {
         artworkCount: Int? = nil,
         sortAlbum: String? = nil,
         sortArtist: String? = nil,
-        sortName: String? = nil,
+        sortTitle: String? = nil,
         sortComposer: String? = nil,
         persistentId: String? = nil,
         isPurchased: Bool? = nil,
@@ -120,7 +120,7 @@ public struct Track: Codable, Hashable, Identifiable {
         libraryFolderCount: Int? = nil
     ) {
         self.id = id
-        self.name = name
+        self.title = title
         self.artist = artist
         self.albumArtist = albumArtist
         self.album = album
@@ -148,7 +148,7 @@ public struct Track: Codable, Hashable, Identifiable {
         self.artworkCount = artworkCount
         self.sortAlbum = sortAlbum
         self.sortArtist = sortArtist
-        self.sortName = sortName
+        self.sortTitle = sortTitle
         self.sortComposer = sortComposer
         self.persistentId = persistentId
         self.isPurchased = isPurchased
