@@ -1,4 +1,7 @@
 import Foundation
+
+#if os(macOS)
+
 import MusicLibrary
 
 let args = CommandLine.arguments
@@ -12,3 +15,9 @@ let exporter = LibraryXMLExporter(filePath: args[1])
 
 let library = try importer.readLibrary()
 try exporter.write(library: library)
+
+#else
+
+fatalError("Converting the Apple Music library is only supported on macOS")
+
+#endif
