@@ -62,6 +62,7 @@ extension Track {
             composer: item.composer,
             genre: item.genre,
             kind: item.kind,
+            mediaKind: MediaKind(item.mediaKind),
             fileSize: item.fileSize,
             totalTime: item.totalTime,
             discNumber: item.album.discNumber,
@@ -99,6 +100,31 @@ extension LocationType {
         case .file: self = .file
         case .remote: self = .remote
         case .URL: self = .url
+        default: return nil
+        }
+    }
+}
+
+extension MediaKind {
+    init?(_ mediaKind: ITLibMediaItemMediaKind) {
+        switch mediaKind {
+        case .kindSong: self = .song
+        case .kindMovie: self = .movie
+        case .kindPodcast: self = .podcast
+        case .kindAudiobook: self = .audiobook
+        case .kindPDFBooklet: self = .pdfBooklet
+        case .kindMusicVideo: self = .musicVideo
+        case .kindTVShow: self = .tvShow
+        case .kindInteractiveBooklet: self = .interactiveBooklet
+        case .kindHomeVideo: self = .homeVideo
+        case .kindRingtone: self = .ringtone
+        case .kindDigitalBooklet: self = .digitalBooklet
+        case .kindIOSApplication: self = .iOSApplication
+        case .kindVoiceMemo: self = .voiceMemo
+        case .kindiTunesU: self = .iTunesU
+        case .kindBook: self = .book
+        case .kindPDFBook: self = .pdfBook
+        case .kindAlertTone: self = .alertTone
         default: return nil
         }
     }

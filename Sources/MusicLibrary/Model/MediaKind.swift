@@ -25,7 +25,7 @@ public struct MediaKind: RawRepresentable, Codable, Hashable {
     /// The media item is an iTunes Extra or an iTunes LP item.
     public static var digitalBooklet = Self(rawValue: "Digital Booklet")
     /// The media item is an iOS app.
-    public static var iosApplication = Self(rawValue: "iOS Application")
+    public static var iOSApplication = Self(rawValue: "iOS Application")
     /// The media item is a recorded voice memo.
     public static var voiceMemo = Self(rawValue: "Voice Memo")
     /// The media item is an iTunes U audio or video file.
