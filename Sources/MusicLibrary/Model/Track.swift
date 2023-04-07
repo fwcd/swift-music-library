@@ -9,6 +9,7 @@ public struct Track: Codable, Hashable, Identifiable {
         case albumArtist = "Album Artist"
         case album = "Album"
         case composer = "Composer"
+        case rating = "Rating"
         case genre = "Genre"
         case kind = "Kind"
         case fileSize = "Size"
@@ -56,6 +57,8 @@ public struct Track: Codable, Hashable, Identifiable {
     public var album: String?
     /// The name of the composer that iTunes associates with the track.
     public var composer: String?
+    /// The rating of the media item.
+    public var rating: Int?
     /// The genre of the track, if any.
     public var genre: String?
     /// The kind of track file, such as an MPEG audio file.
@@ -130,6 +133,7 @@ public struct Track: Codable, Hashable, Identifiable {
         albumArtist: String? = nil,
         album: String? = nil,
         composer: String? = nil,
+        rating: Int? = nil,
         genre: String? = nil,
         kind: String? = nil,
         mediaKind: MediaKind? = nil,
@@ -171,6 +175,7 @@ public struct Track: Codable, Hashable, Identifiable {
         self.albumArtist = albumArtist
         self.album = album
         self.composer = composer
+        self.rating = rating
         self.genre = genre
         self.kind = kind
         self.mediaKind = mediaKind
