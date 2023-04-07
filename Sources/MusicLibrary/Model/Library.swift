@@ -9,7 +9,7 @@ public struct Library: Codable, Hashable {
         case applicationVersion = "Application Version"
         case features = "Features"
         case showContentRatings = "Show Content Ratings"
-        case musicFolder = "Music Folder"
+        case mediaFolderLocation = "Music Folder"
         case persistentId = "Persistent ID"
         case tracks = "Tracks"
     }
@@ -20,7 +20,7 @@ public struct Library: Codable, Hashable {
     public var applicationVersion: String?
     public var features: UInt?
     public var showContentRatings: Bool
-    public var musicFolder: String?
+    public var mediaFolderLocation: String?
     public var persistentId: String?
     public var tracks: [Int: Track]
     public var playlists: [Playlist] = []
@@ -32,7 +32,7 @@ public struct Library: Codable, Hashable {
         applicationVersion: String? = nil,
         features: UInt? = nil,
         showContentRatings: Bool = true,
-        musicFolder: String? = nil,
+        mediaFolderLocation: String? = nil,
         persistentId: String? = nil,
         tracks: [Int: Track] = [:],
         playlists: [Playlist] = []
@@ -44,7 +44,7 @@ public struct Library: Codable, Hashable {
         self.applicationVersion = applicationVersion
         self.features = features
         self.showContentRatings = showContentRatings
-        self.musicFolder = musicFolder
+        self.mediaFolderLocation = mediaFolderLocation
         self.persistentId = persistentId
         self.tracks = tracks
         self.playlists = playlists

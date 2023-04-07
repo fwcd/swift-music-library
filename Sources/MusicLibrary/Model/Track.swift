@@ -8,9 +8,10 @@ public struct Track: Codable, Hashable, Identifiable {
         case artist = "Artist"
         case albumArtist = "Album Artist"
         case album = "Album"
+        case composer = "Composer"
         case genre = "Genre"
         case kind = "Kind"
-        case size = "Size"
+        case fileSize = "Size"
         case totalTime = "Total Time"
         case discNumber = "Disc Number"
         case discCount = "Disc Count"
@@ -26,16 +27,17 @@ public struct Track: Codable, Hashable, Identifiable {
         case playCount = "Play Count"
         case playDate = "Play Date"
         case playDateUtc = "Play Date UTC"
-        case normalization = "Normalization"
+        case volumeNormalizationEnergy = "Normalization"
         case releaseDate = "Release Date"
         case artworkCount = "Artwork Count"
         case sortAlbum = "Sort Album"
         case sortArtist = "Sort Artist"
+        case sortComposer = "Sort Composer"
         case sortName = "Sort Name"
         case persistentId = "Persistent ID"
-        case trackType = "Track Type"
-        case purchased = "Purchased"
+        case isPurchased = "Purchased"
         case location = "Location"
+        case locationType = "Track Type"
         case fileFolderCount = "File Folder Count"
         case libraryFolderCount = "Library Folder Count"
     }
@@ -45,9 +47,10 @@ public struct Track: Codable, Hashable, Identifiable {
     public var artist: String?
     public var albumArtist: String?
     public var album: String?
+    public var composer: String?
     public var genre: String?
     public var kind: String?
-    public var size: Int?
+    public var fileSize: UInt64?
     public var totalTime: Int?
     public var discNumber: Int?
     public var discCount: Int?
@@ -63,16 +66,17 @@ public struct Track: Codable, Hashable, Identifiable {
     public var playCount: Int?
     public var playDate: Int?
     public var playDateUtc: Date?
-    public var normalization: Int?
+    public var volumeNormalizationEnergy: Int?
     public var releaseDate: Date?
     public var artworkCount: Int?
     public var sortAlbum: String?
     public var sortArtist: String?
     public var sortName: String?
+    public var sortComposer: String?
     public var persistentId: String?
-    public var trackType: TrackType?
-    public var purchased: Bool?
+    public var isPurchased: Bool?
     public var location: String?
+    public var locationType: TrackType?
     public var fileFolderCount: Int?
     public var libraryFolderCount: Int?
 
@@ -82,9 +86,10 @@ public struct Track: Codable, Hashable, Identifiable {
         artist: String? = nil,
         albumArtist: String? = nil,
         album: String? = nil,
+        composer: String? = nil,
         genre: String? = nil,
         kind: String? = nil,
-        size: Int? = nil,
+        fileSize: UInt64? = nil,
         totalTime: Int? = nil,
         discNumber: Int? = nil,
         discCount: Int? = nil,
@@ -100,16 +105,17 @@ public struct Track: Codable, Hashable, Identifiable {
         playCount: Int? = nil,
         playDate: Int? = nil,
         playDateUtc: Date? = nil,
-        normalization: Int? = nil,
+        volumeNormalizationEnergy: Int? = nil,
         releaseDate: Date? = nil,
         artworkCount: Int? = nil,
         sortAlbum: String? = nil,
         sortArtist: String? = nil,
         sortName: String? = nil,
+        sortComposer: String? = nil,
         persistentId: String? = nil,
-        trackType: TrackType? = nil,
-        purchased: Bool? = nil,
+        isPurchased: Bool? = nil,
         location: String? = nil,
+        locationType: TrackType? = nil,
         fileFolderCount: Int? = nil,
         libraryFolderCount: Int? = nil
     ) {
@@ -118,9 +124,10 @@ public struct Track: Codable, Hashable, Identifiable {
         self.artist = artist
         self.albumArtist = albumArtist
         self.album = album
+        self.composer = composer
         self.genre = genre
         self.kind = kind
-        self.size = size
+        self.fileSize = fileSize
         self.totalTime = totalTime
         self.discNumber = discNumber
         self.discCount = discCount
@@ -136,16 +143,17 @@ public struct Track: Codable, Hashable, Identifiable {
         self.playCount = playCount
         self.playDate = playDate
         self.playDateUtc = playDateUtc
-        self.normalization = normalization
+        self.volumeNormalizationEnergy = volumeNormalizationEnergy
         self.releaseDate = releaseDate
         self.artworkCount = artworkCount
         self.sortAlbum = sortAlbum
         self.sortArtist = sortArtist
         self.sortName = sortName
+        self.sortComposer = sortComposer
         self.persistentId = persistentId
-        self.trackType = trackType
-        self.purchased = purchased
+        self.isPurchased = isPurchased
         self.location = location
+        self.locationType = locationType
         self.fileFolderCount = fileFolderCount
         self.libraryFolderCount = libraryFolderCount
     }
