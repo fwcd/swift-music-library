@@ -14,13 +14,13 @@ jobs:
     strategy:
       matrix:
         os: ['ubuntu-latest', 'macos-latest']
-        swift: ['5.7']
 
     steps:
     - uses: actions/checkout@v3
     - uses: fwal/setup-swift@v1
+      if: os.name != 'macos-latest'
       with:
-        swift-version: ${{ matrix.swift }}
+        swift-version: '5.7'
     - name: Build
       run: swift build
     - name: Test
