@@ -2,6 +2,44 @@ import Foundation
 
 /// A track/song.
 public struct Track: Codable, Hashable, Identifiable {
+    public enum CodingKeys: String, CodingKey {
+        case id = "Track ID"
+        case name = "Name"
+        case artist = "Artist"
+        case albumArtist = "Album Artist"
+        case album = "Album"
+        case genre = "Genre"
+        case kind = "Kind"
+        case size = "Size"
+        case totalTime = "Total Time"
+        case discNumber = "Disc Number"
+        case discCount = "Disc Count"
+        case trackNumber = "Track Number"
+        case trackCount = "Track Count"
+        case year = "Year"
+        case bpm = "BPM"
+        case dateModified = "Date Modified"
+        case dateAdded = "Date Added"
+        case bitRate = "Bit Rate"
+        case sampleRate = "Sample Rate"
+        case comments = "Comments"
+        case playCount = "Play Count"
+        case playDate = "Play Date"
+        case playDateUtc = "Play Date UTC"
+        case normalization = "Normalization"
+        case releaseDate = "Release Date"
+        case artworkCount = "Artwork Count"
+        case sortAlbum = "Sort Album"
+        case sortArtist = "Sort Artist"
+        case sortName = "Sort Name"
+        case persistentId = "Persistent ID"
+        case trackType = "Track Type"
+        case purchased = "Purchased"
+        case location = "Location"
+        case fileFolderCount = "File Folder Count"
+        case libraryFolderCount = "Library Folder Count"
+    }
+
     public var id: Int
     public var name: String?
     public var artist: String?
