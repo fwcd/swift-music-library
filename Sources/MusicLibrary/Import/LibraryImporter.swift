@@ -1,3 +1,3 @@
 public protocol LibraryImporter {
-    var library: Library { get }
+    func readLibrary() throws -> Library
 }
