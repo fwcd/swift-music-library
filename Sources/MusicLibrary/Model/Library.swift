@@ -12,6 +12,7 @@ public struct Library: Codable, Hashable {
         case mediaFolderLocation = "Music Folder"
         case persistentId = "Persistent ID"
         case tracks = "Tracks"
+        case playlists = "Playlists"
     }
 
     public var apiMajorVersion: Int?
