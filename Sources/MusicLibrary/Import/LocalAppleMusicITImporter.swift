@@ -6,6 +6,7 @@ import iTunesLibrary
 /// the iTunes Library framework. Only for macOS.
 public struct LocalAppleMusicITImporter: LibraryImporter {
     private let itLib: ITLibrary
+    private let indexing: Indexing<NSNumber> = .init()
 
     public init(itLib: ITLibrary) {
         self.itLib = itLib
@@ -16,16 +17,22 @@ public struct LocalAppleMusicITImporter: LibraryImporter {
     }
 
     public func readLibrary() throws -> Library {
-        try Library(itLib)
+        try Library(itLib, indexing: indexing)
     }
 }
 
 extension Library {
-    init(_ itLib: ITLibrary) throws {
+    init(_ itLib: ITLibrary, indexing: Indexing<NSNumber>) throws {
         var tracks = [Int: Track]()
         for item in itLib.allMediaItems {
-            let id = tracks.count
-            tracks[id] = Track(item, id: id)
+            let track = Track(item, indexing: indexing)
+            tracks[track.id] = track
+        }
+
+        var playlists = [Playlist]()
+        for itPlaylist in itLib.allPlaylists {
+            let playlist = Playlist(itPlaylist, indexing: indexing)
+            playlists.append(playlist)
         }
 
         self.init(
@@ -37,13 +44,15 @@ extension Library {
             showContentRatings: itLib.shouldShowContentRating,
             mediaFolderLocation: itLib.mediaFolderLocation?.absoluteString,
             persistentId: (itLib.value(forKey: "_persistentID") as? Int64).map { String($0, radix: 16, uppercase: true) },
-            tracks: tracks
+            tracks: tracks,
+            playlists: playlists
         )
     }
 }
 
 extension Track {
-    init(_ item: ITLibMediaItem, id: Int) {
+    init(_ item: ITLibMediaItem, indexing: Indexing<NSNumber>) {
+        let id = indexing.index(for: item.persistentID)
         self.init(
             id: id,
             name: item.title,
@@ -76,7 +85,7 @@ extension Track {
             sortArtist: item.artist?.sortName,
             sortName: item.sortTitle,
             sortComposer: item.sortComposer,
-            persistentId: String(format: "%llX", item.persistentID.uint64Value),
+            persistentId: formatPersistentId(item.persistentID),
             isPurchased: item.isPurchased,
             location: item.location?.absoluteString,
             locationType: LocationType(item.locationType)
@@ -93,6 +102,40 @@ extension LocationType {
         default: return nil
         }
     }
+}
+
+extension Playlist {
+    init(_ playlist: ITLibPlaylist, indexing: Indexing<NSNumber>) {
+        let isPrimary: Bool
+        if #available(macOS 12.0, *) {
+            isPrimary = playlist.isPrimary
+        } else {
+            isPrimary = playlist.isMaster
+        }
+        let id = indexing.index(for: playlist.persistentID)
+        self.init(
+            id: id,
+            name: playlist.name,
+            isPrimary: isPrimary,
+            persistentId: formatPersistentId(playlist.persistentID),
+            parentPersistentId: playlist.parentID.map { formatPersistentId($0) },
+            isFolder: playlist.kind == .folder,
+            items: playlist.items.map { TrackReference($0, indexing: indexing) }
+        )
+    }
+}
+
+extension TrackReference {
+    init(_ item: ITLibMediaItem, indexing: Indexing<NSNumber>) {
+        let id = indexing.index(for: item.persistentID)
+        self.init(
+            trackId: id
+        )
+    }
+}
+
+private func formatPersistentId(_ raw: NSNumber) -> String {
+    String(format: "%llX", raw.uint64Value)
 }
 
 #endif
