@@ -1,4 +1,4 @@
-/// An index mapping.
+/// An index mapping from some user-defined key.
 public class Indexing<Key> where Key: Hashable {
     private var mapping: [Key: Int] = [:]
 

@@ -1,5 +1,6 @@
 import Foundation
 
+/// An importer that reads an iTunes-compatible library XML file.
 public struct LibraryXMLImporter: LibraryImporter {
     public var data: Data
 

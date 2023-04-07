@@ -1,5 +1,6 @@
 import Foundation
 
+/// An importer that reads a library JSON file.
 public struct LibraryJSONImporter: LibraryImporter {
     public var data: Data
 

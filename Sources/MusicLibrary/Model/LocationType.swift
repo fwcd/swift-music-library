@@ -1,3 +1,4 @@
+/// A track location kind.
 public struct LocationType: RawRepresentable, Codable, Hashable {
     public var rawValue: String
 

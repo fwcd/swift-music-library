@@ -1,5 +1,6 @@
 import Foundation
 
+/// An importer that writes an iTunes-compatible library XML file.
 public struct LibraryXMLExporter: LibraryExporter {
     public var sink: (Data) throws -> Void
 

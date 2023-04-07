@@ -1,5 +1,6 @@
 import Foundation
 
+/// An importer that writes a library JSON file.
 public struct LibraryJSONExporter: LibraryExporter {
     public var sink: (Data) throws -> Void
 
