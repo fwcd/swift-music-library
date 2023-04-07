@@ -130,6 +130,19 @@ extension MediaKind {
     }
 }
 
+extension PlaylistKind {
+    init?(_ playlistKind: ITLibPlaylistKind) {
+        switch playlistKind {
+        case .regular: self = .regular
+        case .smart: self = .smart
+        case .genius: self = .genius
+        case .folder: self = .folder
+        case .geniusMix: self = .geniusMix
+        default: return nil
+        }
+    }
+}
+
 extension Playlist {
     init(_ playlist: ITLibPlaylist, indexing: Indexing<NSNumber>) {
         let isPrimary: Bool
@@ -146,6 +159,7 @@ extension Playlist {
             persistentId: formatPersistentId(playlist.persistentID),
             parentPersistentId: playlist.parentID.map { formatPersistentId($0) },
             isFolder: playlist.kind == .folder,
+            kind: PlaylistKind(playlist.kind),
             items: playlist.items.map { TrackReference($0, indexing: indexing) }
         )
     }

@@ -27,6 +27,7 @@ public struct Playlist: Codable, Hashable, Identifiable {
     // TODO: Decode this using @CustomCodable, see https://github.com/cvzi/itunes_smartplaylist
     public var smartInfo: Data?
     public var smartCriteria: Data?
+    public var kind: PlaylistKind?
     public var items: [TrackReference]
 
     public init(
@@ -39,6 +40,7 @@ public struct Playlist: Codable, Hashable, Identifiable {
         allItems: Bool = true,
         isFolder: Bool? = nil,
         isVisible: Bool = true,
+        kind: PlaylistKind? = nil,
         items: [TrackReference] = []
     ) {
         self.id = id
@@ -50,6 +52,7 @@ public struct Playlist: Codable, Hashable, Identifiable {
         self.allItems = allItems
         self.isFolder = isFolder
         self.isVisible = isVisible
+        self.kind = kind
         self.items = items
     }
 }
