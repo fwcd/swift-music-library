@@ -13,8 +13,7 @@ if args.count <= 1 {
 let importer = try LocalAppleMediaImporter()
 let exporter = LibraryXMLExporter(filePath: args[1])
 
-var library = try importer.readLibrary()
-library.playlists.removeAll { $0.distinguishedKind != nil }
+let library = try importer.readLibrary()
 try exporter.write(library: library)
 
 #else
