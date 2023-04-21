@@ -29,8 +29,6 @@ private let sampleRate = Expression<Int?>("samplerate")
 private let cuePoint = Expression<Int?>("cuepoint")
 private let bpm = Expression<Double?>("bpm")
 private let channels = Expression<Int?>("channels")
-private let datetimeAdded = Expression<Date?>("datetime_added")
-private let lastPlayed = Expression<Date?>("last_played")
 private let played = Expression<Int?>("played")
 
 // TODO: Locations, ratings, perhaps keys etc.
@@ -64,9 +62,7 @@ public struct MixxxImporter: LibraryImporter {
                 trackNumber: track[trackNumber].flatMap { Int($0) },
                 year: track[year].flatMap { Int($0) },
                 bpm: track[bpm].map { Int($0) },
-                dateAdded: track[datetimeAdded],
-                playCount: track[played],
-                playDateUtc: track[lastPlayed]
+                playCount: track[played]
             )
         }
 
