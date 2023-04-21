@@ -15,6 +15,8 @@ public struct Playlist: Codable, Hashable, Identifiable {
         case items = "Playlist Items"
     }
 
+    // TODO: Encode distinguished kind (<key>Music</key><true/> etc.)
+
     public var id: Int
     public var name: String?
     public var description: String?
@@ -28,6 +30,7 @@ public struct Playlist: Codable, Hashable, Identifiable {
     public var smartInfo: Data?
     public var smartCriteria: Data?
     public var kind: PlaylistKind?
+    public var distinguishedKind: PlaylistDistinguishedKind? = nil
     public var items: [TrackReference]
 
     public init(
@@ -41,6 +44,7 @@ public struct Playlist: Codable, Hashable, Identifiable {
         isFolder: Bool? = nil,
         isVisible: Bool = true,
         kind: PlaylistKind? = nil,
+        distinguishedKind: PlaylistDistinguishedKind? = nil,
         items: [TrackReference] = []
     ) {
         self.id = id
@@ -53,6 +57,7 @@ public struct Playlist: Codable, Hashable, Identifiable {
         self.isFolder = isFolder
         self.isVisible = isVisible
         self.kind = kind
+        self.distinguishedKind = distinguishedKind
         self.items = items
     }
 }

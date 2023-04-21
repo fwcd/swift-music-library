@@ -145,6 +145,34 @@ extension PlaylistKind {
     }
 }
 
+extension PlaylistDistinguishedKind {
+    init?(_ distinguishedKind: ITLibDistinguishedPlaylistKind) {
+        switch distinguishedKind {
+        case .kindMusic: self = .music
+        case .kindMusicVideos: self = .musicVideos
+        case .kindMovies: self = .movies
+        case .kindHomeVideos: self = .homeVideos
+        case .kindTVShows: self = .tvShows
+        case .kindAudiobooks: self = .audiobooks
+        case .kindRingtones: self = .ringtones
+        case .kindPodcasts: self = .podcasts
+        case .kindVoiceMemos: self = .voiceMemos
+        case .kindApplications: self = .applications
+        case .kindPurchases: self = .purchases
+        case .kindiTunesU: self = .iTunesU
+        case .kindLovedSongs: self = .lovedSongs
+        case .kind90sMusic: self = .my90sMusic
+        case .kindMyTopRated: self = .myTopRated
+        case .kindTop25MostPlayed: self = .top25MostPlayed
+        case .kindRecentlyPlayed: self = .recentlyPlayed
+        case .kindRecentlyAdded: self = .recentlyAdded
+        case .kindClassicalMusic: self = .classicalMusic
+        case .kindMusicShowsAndMovies: self = .musicShowsAndMovies
+        default: return nil
+        }
+    }
+}
+
 extension Playlist {
     init(_ playlist: ITLibPlaylist, indexing: Indexing<NSNumber>) {
         let isPrimary: Bool
@@ -162,6 +190,7 @@ extension Playlist {
             parentPersistentId: playlist.parentID.map { formatPersistentId($0) },
             isFolder: playlist.kind == .folder,
             kind: PlaylistKind(playlist.kind),
+            distinguishedKind: PlaylistDistinguishedKind(playlist.distinguishedKind),
             items: playlist.items.map { TrackReference($0, indexing: indexing) }
         )
     }
