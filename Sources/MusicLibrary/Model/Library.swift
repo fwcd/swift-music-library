@@ -10,7 +10,7 @@ public struct Library: Codable, Hashable {
         case features = "Features"
         case showContentRatings = "Show Content Ratings"
         case mediaFolderLocation = "Music Folder"
-        case persistentId = "Persistent ID"
+        case persistentId = "Library Persistent ID"
         case tracks = "Tracks"
         case playlists = "Playlists"
     }

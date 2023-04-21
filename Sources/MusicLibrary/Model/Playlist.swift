@@ -3,15 +3,15 @@ import Foundation
 /// A list of tracks.
 public struct Playlist: Codable, Hashable, Identifiable {
     public enum CodingKeys: String, CodingKey {
-        case id = "Playlist ID"
         case name = "Name"
         case description = "Description"
         case isPrimary = "Master"
-        case persistentId = "Persistent ID"
+        case isVisible = "Visible"
+        case id = "Playlist ID"
+        case persistentId = "Playlist Persistent ID"
         case parentPersistentId = "Parent Persistent ID"
         case allItems = "All Items"
         case isFolder = "Folder"
-        case isVisible = "Visible"
         case items = "Playlist Items"
     }
 
