@@ -4,6 +4,10 @@ import Foundation
 public struct LibraryJSONImporter: LibraryImporter {
     public var data: Data
 
+    public init(filePath: String) throws {
+        try self.init(url: URL(fileURLWithPath: filePath))
+    }
+
     public init(url: URL) throws {
         data = try Data(contentsOf: url)
     }
