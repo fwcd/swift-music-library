@@ -1,4 +1,5 @@
 import Foundation
+import OrderedPlistEncoder
 
 /// An importer that writes an iTunes-compatible library XML file.
 public struct LibraryXMLExporter: LibraryExporter {
@@ -19,8 +20,7 @@ public struct LibraryXMLExporter: LibraryExporter {
     }
 
     public func write(library: Library) throws {
-        let encoder = PropertyListEncoder()
-        encoder.outputFormat = .xml
+        let encoder = OrderedPlistEncoder(options: .prettyPrinted)
         try sink(encoder.encode(library))
     }
 }
