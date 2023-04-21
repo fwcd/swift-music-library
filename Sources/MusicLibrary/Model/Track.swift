@@ -53,10 +53,10 @@ public struct Track: Codable, Hashable, Identifiable {
     public var artist: String?
     /// The artist of the track's album.
     public var albumArtist: String?
-    /// The title of the track's album.
-    public var album: String?
     /// The name of the composer that iTunes associates with the track.
     public var composer: String?
+    /// The title of the track's album.
+    public var album: String?
     /// The rating of the media item.
     public var rating: Int?
     /// The genre of the track, if any.
@@ -131,8 +131,8 @@ public struct Track: Codable, Hashable, Identifiable {
         title: String? = nil,
         artist: String? = nil,
         albumArtist: String? = nil,
-        album: String? = nil,
         composer: String? = nil,
+        album: String? = nil,
         rating: Int? = nil,
         genre: String? = nil,
         kind: String? = nil,
@@ -173,8 +173,8 @@ public struct Track: Codable, Hashable, Identifiable {
         self.title = title
         self.artist = artist
         self.albumArtist = albumArtist
-        self.album = album
         self.composer = composer
+        self.album = album
         self.rating = rating
         self.genre = genre
         self.kind = kind
