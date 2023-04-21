@@ -2,9 +2,9 @@
 
 import iTunesLibrary
 
-/// An importer for the local Apple Music library using
+/// An importer for the local media library using
 /// the iTunes Library framework. Only for macOS.
-public struct LocalAppleMusicITImporter: LibraryImporter {
+public struct LocalAppleMediaITImporter: LibraryImporter {
     private let itLib: ITLibrary
 
     public init(itLib: ITLibrary) {

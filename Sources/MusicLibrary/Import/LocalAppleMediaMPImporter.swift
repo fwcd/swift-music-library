@@ -2,9 +2,9 @@
 
 import MediaPlayer
 
-/// An importer for the local Apple Music library using
+/// An importer for the local media library using
 /// the Media Player framework. Primarily intended for iOS.
-public struct LocalAppleMusicMPImporter: LibraryImporter {
+public struct LocalAppleMediaMPImporter: LibraryImporter {
     public func readLibrary() throws -> Library {
         let indexing = Indexing<MPMediaEntityPersistentID>()
         

@@ -10,7 +10,7 @@ if args.count <= 1 {
     exit(1)
 }
 
-let importer = try LocalAppleMusicImporter()
+let importer = try LocalAppleMediaImporter()
 let exporter = LibraryXMLExporter(filePath: args[1])
 
 var library = try importer.readLibrary()
@@ -19,6 +19,6 @@ try exporter.write(library: library)
 
 #else
 
-fatalError("Converting the Apple Music library is only supported on macOS")
+fatalError("Converting the Apple media library is only supported on macOS")
 
 #endif

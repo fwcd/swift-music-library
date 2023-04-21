@@ -4,12 +4,12 @@ import Foundation
 
 import MusicLibrary
 
-let importer = try LocalAppleMusicImporter()
+let importer = try LocalAppleMediaImporter()
 let library = try importer.readLibrary()
 dump(library)
 
 #else
 
-fatalError("Reading the Apple Music library is only supported on macOS")
+fatalError("Reading the Apple media library is only supported on macOS")
 
 #endif
