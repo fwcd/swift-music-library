@@ -6,6 +6,8 @@ public struct PlaylistDistinguishedKind: RawRepresentable, Codable, Hashable {
     public static let music = Self(rawValue: "Music")
     /// A playlist containing all music videos.
     public static let musicVideos = Self(rawValue: "Music Videos")
+    /// A playlist containing all library music videos.
+    public static let libraryMusicVideos = Self(rawValue: "Library Music Videos")
     /// A playlist containing all movies.
     public static let movies = Self(rawValue: "Movies")
     /// A playlist containing all home videos.

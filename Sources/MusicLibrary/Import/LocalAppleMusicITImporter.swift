@@ -150,6 +150,7 @@ extension PlaylistDistinguishedKind {
         switch distinguishedKind {
         case .kindMusic: self = .music
         case .kindMusicVideos: self = .musicVideos
+        case .kindLibraryMusicVideos: self = .libraryMusicVideos
         case .kindMovies: self = .movies
         case .kindHomeVideos: self = .homeVideos
         case .kindTVShows: self = .tvShows
