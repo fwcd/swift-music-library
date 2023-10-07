@@ -38,6 +38,7 @@ extension Track {
             artist: item.artist,
             albumArtist: item.albumArtist,
             album: item.albumTitle,
+            rating: item.rating,
             composer: item.composer,
             genre: item.genre,
             mediaKind: MediaKind(item.mediaType),
