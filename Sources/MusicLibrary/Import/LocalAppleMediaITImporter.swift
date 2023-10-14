@@ -60,6 +60,7 @@ extension Track {
             albumArtist: item.album.albumArtist,
             composer: item.composer,
             album: item.album.title,
+            rating: item.rating,
             genre: item.genre,
             kind: item.kind,
             mediaKind: MediaKind(item.mediaKind),
