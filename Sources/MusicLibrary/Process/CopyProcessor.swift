@@ -19,10 +19,10 @@ public struct CopyProcessor: LibraryProcessor {
             let oldURL = track.url
             let newURL = mapping(track)
 
-            var newProgress = progress
-            newProgress.current = i
-            newProgress.message = "Copying to \(newURL)..."
-            progress = newProgress
+            progress.update(
+                current: i,
+                message: "Copying to \(newURL)..."
+            )
 
             if let oldURL {
                 try FileManager.default.copyItem(at: oldURL, to: newURL)
