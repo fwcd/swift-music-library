@@ -7,7 +7,7 @@ public struct CopyProcessor: LibraryProcessor {
         self.mapping = mapping
     }
 
-    public mutating func process(library: inout Library, onProgress: (ProgressInfo) -> Void) throws {
+    public func process(library: inout Library, onProgress: (ProgressInfo) -> Void) throws {
         var progress = ProgressInfo(total: library.tracks.count) {
             didSet { onProgress(progress) }
         }
