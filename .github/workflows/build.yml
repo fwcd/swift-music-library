@@ -13,8 +13,11 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: ['ubuntu-latest', 'macos-latest']
-        swift: ['5.7']
+        include:
+        - os: 'ubuntu-latest'
+          swift: '5.7'
+        - os: 'macos-latest'
+          swift: '5.9'
 
     steps:
     - uses: actions/checkout@v3
