@@ -126,6 +126,12 @@ public struct Track: Codable, Hashable, Identifiable {
     public var fileFolderCount: Int?
     public var libraryFolderCount: Int?
 
+    /// The location as URL.
+    public var url: URL? {
+        get { location.flatMap(URL.init(string:)) }
+        set { location = newValue?.absoluteString }
+    }
+
     public init(
         id: Int,
         title: String? = nil,
