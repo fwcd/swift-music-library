@@ -4,6 +4,7 @@ import OrderedPlistEncoder
 /// An importer that writes an iTunes-compatible library XML file.
 public struct LibraryXMLExporter: LibraryExporter {
     public var sink: (Data) throws -> Void
+    public var outputFormatting: OrderedPlistEncoder.OutputFormatting = .prettyPrinted
 
     public init(sink: @escaping (Data) throws -> Void) {
         self.sink = sink
@@ -20,7 +21,7 @@ public struct LibraryXMLExporter: LibraryExporter {
     }
 
     public func write(library: Library) throws {
-        let encoder = OrderedPlistEncoder(options: .prettyPrinted)
+        let encoder = OrderedPlistEncoder(options: outputFormatting)
         try sink(encoder.encode(library))
     }
 }
