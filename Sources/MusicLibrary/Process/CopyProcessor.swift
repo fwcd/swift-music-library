@@ -7,11 +7,22 @@ public struct CopyProcessor: LibraryProcessor {
         self.mapping = mapping
     }
 
-    public mutating func process(library: inout Library) throws {
+    public mutating func process(library: inout Library, onProgress: (ProgressInfo) -> Void) throws {
+        var progress = ProgressInfo(current: 0, total: library.tracks.count) {
+            didSet {
+                onProgress(progress)
+            }
+        }
+
         var newTracks: [Int: Track] = [:]
-        for (id, track) in library.tracks {
+        for (i, (id, track)) in library.tracks.enumerated() {
             let oldURL = track.url
             let newURL = mapping(track)
+
+            var newProgress = progress
+            newProgress.current = i
+            newProgress.message = "Copying to \(newURL)..."
+            progress = newProgress
 
             if let oldURL {
                 try FileManager.default.copyItem(at: oldURL, to: newURL)
@@ -21,6 +32,7 @@ public struct CopyProcessor: LibraryProcessor {
             newTrack.url = newURL
             newTracks[id] = newTrack
         }
+
         library.tracks = newTracks
     }
 }
