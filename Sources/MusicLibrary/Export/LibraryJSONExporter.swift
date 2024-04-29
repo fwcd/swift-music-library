@@ -20,10 +20,19 @@ public struct LibraryJSONExporter: LibraryExporter {
         self.init(url: URL(fileURLWithPath: filePath))
     }
 
-    public func write(library: Library) throws {
+    public func write(library: Library, onProgress: (ProgressInfo) -> Void) throws {
+        var progress = ProgressInfo(total: 2) {
+            didSet { onProgress(progress) }
+        }
+
         let encoder = JSONEncoder()
         encoder.outputFormatting = outputFormatting
         encoder.keyEncodingStrategy = keyEncodingStrategy
-        try sink(encoder.encode(library))
+
+        progress.increment(message: "Encoding library to JSON...")
+        let encoded = try encoder.encode(library)
+
+        progress.increment(message: "Writing library...")
+        try sink(encoded)
     }
 }

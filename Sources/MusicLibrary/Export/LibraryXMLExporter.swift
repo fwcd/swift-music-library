@@ -20,8 +20,17 @@ public struct LibraryXMLExporter: LibraryExporter {
         self.init(url: URL(fileURLWithPath: filePath))
     }
 
-    public func write(library: Library) throws {
+    public func write(library: Library, onProgress: (ProgressInfo) -> Void) throws {
+        var progress = ProgressInfo(total: 2) {
+            didSet { onProgress(progress) }
+        }
+
         let encoder = OrderedPlistEncoder(options: outputFormatting)
-        try sink(encoder.encode(library))
+
+        progress.increment(message: "Encoding library to XML...")
+        let encoded = try encoder.encode(library)
+
+        progress.increment(message: "Writing library...")
+        try sink(encoded)
     }
 }
