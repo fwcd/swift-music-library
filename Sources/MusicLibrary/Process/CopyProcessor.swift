@@ -20,6 +20,7 @@ public struct CopyProcessor: LibraryProcessor {
 
             if let newURL, let oldURL {
                 progress.update(current: i, message: "Copying to \(newURL)...")
+                try FileManager.default.createDirectory(at: newURL.deletingLastPathComponent(), withIntermediateDirectories: true)
                 try FileManager.default.copyItem(at: oldURL, to: newURL)
 
                 var newTrack = track
