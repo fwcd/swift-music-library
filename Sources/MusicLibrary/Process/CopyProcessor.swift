@@ -2,7 +2,7 @@ import Foundation
 
 /// A library processor copying tracks to a location using a provided mapping.
 public struct CopyProcessor: LibraryProcessor {
-    private let mapping: (Track) -> URL
+    private let mapping: (Track) -> URL?
 
     public init(mapping: @escaping (Track) -> URL) {
         self.mapping = mapping
@@ -14,19 +14,18 @@ public struct CopyProcessor: LibraryProcessor {
         }
 
         var newTracks: [Int: Track] = [:]
-        for (id, track) in library.tracks {
+        for (i, (id, track)) in library.tracks.enumerated() {
             let oldURL = track.url
             let newURL = mapping(track)
 
-            progress.increment(message: "Copying to \(newURL)...")
-
-            if let oldURL {
+            if let newURL, let oldURL {
+                progress.update(current: i, message: "Copying to \(newURL)...")
                 try FileManager.default.copyItem(at: oldURL, to: newURL)
-            }
 
-            var newTrack = track
-            newTrack.url = newURL
-            newTracks[id] = newTrack
+                var newTrack = track
+                newTrack.url = newURL
+                newTracks[id] = newTrack
+            }
         }
 
         library.tracks = newTracks
