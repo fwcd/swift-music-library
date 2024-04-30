@@ -4,7 +4,7 @@ import Foundation
 public struct CopyProcessor: LibraryProcessor {
     private let mapping: (Track) -> URL?
 
-    public init(mapping: @escaping (Track) -> URL) {
+    public init(mapping: @escaping (Track) -> URL?) {
         self.mapping = mapping
     }
 
