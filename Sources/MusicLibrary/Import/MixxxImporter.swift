@@ -44,7 +44,9 @@ public struct MixxxImporter: LibraryImporter {
         try self.init(dbFilePath: "\(mixxxConfigRoot)/mixxxdb.sqlite")
     }
 
-    public func readLibrary() throws -> Library {
+    public func readLibrary(onProgress: (ProgressInfo) -> Void) throws -> Library {
+        // TODO: Invoke progress callback
+
         var tracks: [Int: Track] = [:]
 
         for track in try db.prepare(library) {

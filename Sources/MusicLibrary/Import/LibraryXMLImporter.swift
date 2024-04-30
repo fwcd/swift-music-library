@@ -16,7 +16,12 @@ public struct LibraryXMLImporter: LibraryImporter {
         self.data = data
     }
 
-    public func readLibrary() throws -> Library {
+    public func readLibrary(onProgress: (ProgressInfo) -> Void) throws -> Library {
+        var progress = ProgressInfo(total: 1) {
+            didSet { onProgress(progress) }
+        }
+
+        progress.increment(message: "Decoding library from XML...")
         let decoder = PropertyListDecoder()
         return try decoder.decode(Library.self, from: data)
     }
