@@ -16,17 +16,17 @@ public struct LocalAppleMediaITImporter: LibraryImporter {
     }
 
     public func readLibrary(onProgress: (ProgressInfo) -> Void) throws -> Library {
-        var progress = ProgressInfo(total: itLib.allMediaItems.count + itLib.allPlaylists.count) {
-            didSet { onProgress(progress) }
-        }
-
         let indexing: Indexing<NSNumber> = .init()
-        return try Library(itLib, indexing: indexing, progress: &progress)
+        return try Library(itLib, indexing: indexing, onProgress: onProgress)
     }
 }
 
 extension Library {
-    init(_ itLib: ITLibrary, indexing: Indexing<NSNumber>, progress: inout ProgressInfo) throws {
+    init(_ itLib: ITLibrary, indexing: Indexing<NSNumber>, onProgress: (ProgressInfo) -> Void) throws {
+        var progress = ProgressInfo(total: itLib.allMediaItems.count + itLib.allPlaylists.count) {
+            didSet { onProgress(progress) }
+        }
+
         var tracks = [Int: Track]()
         for item in itLib.allMediaItems {
             progress.increment(message: "Importing track '\(item.title)'...")
