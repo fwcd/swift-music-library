@@ -1,3 +1,4 @@
+/// A snapshot of some progress.
 public struct ProgressInfo {
     public var current: Int
     public var total: Int?

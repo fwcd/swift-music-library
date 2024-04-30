@@ -1,5 +1,6 @@
 import Foundation
 
+/// A library processor copying tracks to a location using a provided mapping.
 public struct CopyProcessor: LibraryProcessor {
     private let mapping: (Track) -> URL
 
