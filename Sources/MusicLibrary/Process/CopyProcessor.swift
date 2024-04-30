@@ -20,7 +20,7 @@ public struct CopyProcessor: LibraryProcessor {
 
             // TODO: Warn about skipping existing tracks
             if let newURL, let oldURL, !FileManager.default.isReadableFile(atPath: newURL.path) {
-                progress.update(current: i, message: "Copying to \(newURL)...")
+                progress.update(current: i, message: "Copying '\(oldURL.lastPathComponent)'...")
                 try FileManager.default.createDirectory(at: newURL.deletingLastPathComponent(), withIntermediateDirectories: true)
                 try FileManager.default.copyItem(at: oldURL, to: newURL)
 
