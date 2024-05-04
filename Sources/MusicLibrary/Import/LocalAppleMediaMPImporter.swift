@@ -40,6 +40,7 @@ extension Track {
             artist: item.artist,
             albumArtist: item.albumArtist,
             album: item.albumTitle,
+            grouping: item.userGrouping,
             rating: item.rating,
             composer: item.composer,
             genre: item.genre,
