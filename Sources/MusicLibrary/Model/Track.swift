@@ -9,6 +9,7 @@ public struct Track: Codable, Hashable, Identifiable {
         case albumArtist = "Album Artist"
         case composer = "Composer"
         case album = "Album"
+        case grouping = "Grouping"
         case genre = "Genre"
         case kind = "Kind"
         case comments = "Comments"
@@ -57,6 +58,8 @@ public struct Track: Codable, Hashable, Identifiable {
     public var composer: String?
     /// The title of the track's album.
     public var album: String?
+    /// The grouping on the track.
+    public var grouping: String?
     /// The rating of the media item.
     public var rating: Int?
     /// The genre of the track, if any.
@@ -139,6 +142,7 @@ public struct Track: Codable, Hashable, Identifiable {
         albumArtist: String? = nil,
         composer: String? = nil,
         album: String? = nil,
+        grouping: String? = nil,
         rating: Int? = nil,
         genre: String? = nil,
         kind: String? = nil,
@@ -181,6 +185,7 @@ public struct Track: Codable, Hashable, Identifiable {
         self.albumArtist = albumArtist
         self.composer = composer
         self.album = album
+        self.grouping = grouping
         self.rating = rating
         self.genre = genre
         self.kind = kind

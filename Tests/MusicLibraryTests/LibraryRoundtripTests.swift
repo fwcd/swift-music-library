@@ -36,6 +36,7 @@ final class LibraryRoundtripTests: XCTestCase {
                     albumArtist: "Test Album Artist",
                     composer: "Test Composer",
                     album: "Test Album",
+                    grouping: "Test Grouping",
                     genre: "Pop",
                     fileSize: 1000,
                     totalTime: 200,
