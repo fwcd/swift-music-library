@@ -4,7 +4,7 @@ import OrderedPlistEncoder
 /// An importer that writes an iTunes-compatible library XML file.
 public struct LibraryXMLExporter: LibraryExporter {
     public var sink: (Data) throws -> Void
-    public var outputFormatting: OrderedPlistEncoder.OutputFormatting = .prettyPrinted
+    public var options: OrderedPlistEncoder.Options = .prettyPrinted
 
     public init(sink: @escaping (Data) throws -> Void) {
         self.sink = sink
@@ -25,7 +25,7 @@ public struct LibraryXMLExporter: LibraryExporter {
             didSet { onProgress(progress) }
         }
 
-        let encoder = OrderedPlistEncoder(options: outputFormatting)
+        let encoder = OrderedPlistEncoder(options: options)
 
         progress.increment(message: "Encoding library to XML...")
         let encoded = try encoder.encode(library)
