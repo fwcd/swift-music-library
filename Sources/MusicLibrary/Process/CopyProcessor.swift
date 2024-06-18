@@ -71,11 +71,11 @@ public struct CopyProcessor: LibraryProcessor {
 
                     try fileManager.createDirectory(at: newURL.deletingLastPathComponent(), withIntermediateDirectories: true)
                     try fileManager.copyItem(at: oldURL, to: newURL)
-
-                    var newTrack = track
-                    newTrack.url = newURL
-                    newTracks[id] = newTrack
                 }
+
+                var newTrack = track
+                newTrack.url = newURL
+                newTracks[id] = newTrack
             }
         }
 
