@@ -2,7 +2,7 @@ import Foundation
 
 /// A library processor copying tracks to a location using a provided mapping.
 public struct CopyProcessor: LibraryProcessor {
-    private let skipPredicate: SkipPredicate = .never
+    private let skipPredicate: SkipPredicate
     private let mapping: (Track) -> URL?
 
     /// An expression that describes whether a given copy operation (old URL to new URL) should be skipped.
@@ -32,7 +32,8 @@ public struct CopyProcessor: LibraryProcessor {
         }
     }
 
-    public init(mapping: @escaping (Track) -> URL?) {
+    public init(skipPredicate: SkipPredicate = .never, mapping: @escaping (Track) -> URL?) {
+        self.skipPredicate = skipPredicate
         self.mapping = mapping
     }
 
