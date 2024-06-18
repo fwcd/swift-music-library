@@ -52,8 +52,6 @@ public struct CopyProcessor: LibraryProcessor {
             didSet { onProgress(progress) }
         }
 
-        let fileManager = FileManager.default
-
         var newTracks: [Int: Track] = [:]
         for (i, (id, track)) in library.tracks.enumerated() {
             let oldURL = track.url
@@ -64,6 +62,13 @@ public struct CopyProcessor: LibraryProcessor {
                     progress.update(current: i, message: "Skipping '\(oldURL.lastPathComponent)' (\(reason))...")
                 } else {
                     progress.update(current: i, message: "Copying '\(oldURL.lastPathComponent)'...")
+
+                    let fileManager = FileManager.default
+
+                    if fileManager.fileExists(atPath: newURL.path) {
+                        try fileManager.removeItem(at: newURL)
+                    }
+
                     try fileManager.createDirectory(at: newURL.deletingLastPathComponent(), withIntermediateDirectories: true)
                     try fileManager.copyItem(at: oldURL, to: newURL)
 
