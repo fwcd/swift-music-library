@@ -3,8 +3,8 @@ import XCTest
 
 final class CopyProcessorTests: XCTestCase {
     func testSkipPredicate() {
-        let a = URL(filePath: "/tmp/this-file-probably-does-not-exist-830649")
-        let b = URL(filePath: "/tmp/this-file-probably-does-not-exist-159224")
+        let a = URL(fileURLWithPath: "/tmp/this-file-probably-does-not-exist-830649")
+        let b = URL(fileURLWithPath: "/tmp/this-file-probably-does-not-exist-159224")
 
         XCTAssertEqual(CopyProcessor.SkipPredicate.always.skipReason(oldURL: a, newURL: b), "always")
 
