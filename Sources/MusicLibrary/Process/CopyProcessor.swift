@@ -5,29 +5,39 @@ public struct CopyProcessor: LibraryProcessor {
     private let skipPredicate: SkipPredicate
     private let mapping: (Track) -> URL?
 
-    /// An expression that describes whether a given copy operation (old URL to new URL) should be skipped.
+    /// An expression that describes whether a given copy operation (old URL to
+    /// new URL) should be skipped and, if so, provides a reason.
     public enum SkipPredicate {
         case never
         case always
-        case lambda((URL, URL) -> Bool)
+        case lambda((URL, URL) -> String?)
         case and([SkipPredicate])
         case or([SkipPredicate])
 
         public static let fileExists: Self = .lambda { _, newURL in
-            FileManager.default.fileExists(atPath: newURL.path)
+            FileManager.default.fileExists(atPath: newURL.path) ? "file exists" : nil
         }
         public static let sizeMatches: Self = .lambda { oldURL, newURL in
-            (try? FileManager.default.fileSize(atPath: oldURL.path) == FileManager.default.fileSize(atPath: newURL.path)) ?? false
+            (try? FileManager.default.fileSize(atPath: oldURL.path) == FileManager.default.fileSize(atPath: newURL.path)).flatMap { $0 ? "size matches" : nil }
         }
 
-        /// Evaluates the predicate.
-        public func shouldSkip(oldURL: URL, newURL: URL) -> Bool {
+        /// Evaluates the predicate, providing a reason if the copy should be skipped.
+        public func skipReason(oldURL: URL, newURL: URL) -> String? {
             switch self {
-            case .never: return false
-            case .always: return true
-            case .lambda(let lambda): return lambda(oldURL, newURL)
-            case .and(let terms): return terms.allSatisfy { $0.shouldSkip(oldURL: oldURL, newURL: newURL) }
-            case .or(let terms): return terms.contains { $0.shouldSkip(oldURL: oldURL, newURL: newURL) }
+            case .never:
+                return nil
+            case .always:
+                return "always"
+            case .lambda(let lambda):
+                return lambda(oldURL, newURL)
+            case .and(let terms):
+                return terms
+                    .map { $0.skipReason(oldURL: oldURL, newURL: newURL) }
+                    .reduce1 { acc, next in acc.flatMap { acc in next.map { next in "\(acc) and \(next)" } } } ?? "empty and"
+            case .or(let terms):
+                return terms
+                    .compactMap { $0.skipReason(oldURL: oldURL, newURL: newURL) }
+                    .first
             }
         }
     }
@@ -49,10 +59,9 @@ public struct CopyProcessor: LibraryProcessor {
             let oldURL = track.url
             let newURL = mapping(track)
 
-            // TODO: Warn about skipping existing tracks
             if let newURL, let oldURL {
-                if skipPredicate.shouldSkip(oldURL: oldURL, newURL: newURL) {
-                    progress.update(current: i, message: "Skipping '\(oldURL.lastPathComponent)'...")
+                if let reason = skipPredicate.skipReason(oldURL: oldURL, newURL: newURL) {
+                    progress.update(current: i, message: "Skipping '\(oldURL.lastPathComponent)' (\(reason))...")
                 } else {
                     progress.update(current: i, message: "Copying '\(oldURL.lastPathComponent)'...")
                     try fileManager.createDirectory(at: newURL.deletingLastPathComponent(), withIntermediateDirectories: true)
