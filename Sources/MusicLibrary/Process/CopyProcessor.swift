@@ -2,17 +2,33 @@ import Foundation
 
 /// A library processor copying tracks to a location using a provided mapping.
 public struct CopyProcessor: LibraryProcessor {
-    private let skipCriteria: SkipCriteria = []
+    private let skipPredicate: SkipPredicate = .never
     private let mapping: (Track) -> URL?
 
-    public struct SkipCriteria: OptionSet {
-        public static let nameMatches = Self(rawValue: 1 << 0)
-        public static let sizeMatches = Self(rawValue: 1 << 1)
+    /// An expression that describes whether a given copy operation (old URL to new URL) should be skipped.
+    public enum SkipPredicate {
+        case never
+        case always
+        case lambda((URL, URL) -> Bool)
+        case and([SkipPredicate])
+        case or([SkipPredicate])
 
-        public let rawValue: UInt64
+        public static let fileExists: Self = .lambda { _, newURL in
+            FileManager.default.fileExists(atPath: newURL.path)
+        }
+        public static let sizeMatches: Self = .lambda { oldURL, newURL in
+            (try? FileManager.default.fileSize(atPath: oldURL.path) == FileManager.default.fileSize(atPath: newURL.path)) ?? false
+        }
 
-        public init(rawValue: UInt64) {
-            self.rawValue = rawValue
+        /// Evaluates the predicate.
+        public func shouldSkip(oldURL: URL, newURL: URL) -> Bool {
+            switch self {
+            case .never: return false
+            case .always: return true
+            case .lambda(let lambda): return lambda(oldURL, newURL)
+            case .and(let terms): return terms.allSatisfy { $0.shouldSkip(oldURL: oldURL, newURL: newURL) }
+            case .or(let terms): return terms.contains { $0.shouldSkip(oldURL: oldURL, newURL: newURL) }
+            }
         }
     }
 
@@ -33,17 +49,18 @@ public struct CopyProcessor: LibraryProcessor {
             let newURL = mapping(track)
 
             // TODO: Warn about skipping existing tracks
-            if let newURL,
-               let oldURL,
-               !skipCriteria.contains(.nameMatches) || !fileManager.isReadableFile(atPath: newURL.path),
-               try !skipCriteria.contains(.sizeMatches) || fileManager.fileSize(atPath: oldURL.path) != fileManager.fileSize(atPath: newURL.path) {
-                progress.update(current: i, message: "Copying '\(oldURL.lastPathComponent)'...")
-                try fileManager.createDirectory(at: newURL.deletingLastPathComponent(), withIntermediateDirectories: true)
-                try fileManager.copyItem(at: oldURL, to: newURL)
+            if let newURL, let oldURL {
+                if skipPredicate.shouldSkip(oldURL: oldURL, newURL: newURL) {
+                    progress.update(current: i, message: "Skipping '\(oldURL.lastPathComponent)'...")
+                } else {
+                    progress.update(current: i, message: "Copying '\(oldURL.lastPathComponent)'...")
+                    try fileManager.createDirectory(at: newURL.deletingLastPathComponent(), withIntermediateDirectories: true)
+                    try fileManager.copyItem(at: oldURL, to: newURL)
 
-                var newTrack = track
-                newTrack.url = newURL
-                newTracks[id] = newTrack
+                    var newTrack = track
+                    newTrack.url = newURL
+                    newTracks[id] = newTrack
+                }
             }
         }
 
