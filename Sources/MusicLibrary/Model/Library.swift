@@ -1,7 +1,7 @@
 import Foundation
 
 /// A music library.
-public struct Library: Codable, Hashable {
+public struct Library: Codable, Hashable, Sendable {
     public enum CodingKeys: String, CodingKey {
         case apiMajorVersion = "Major Version"
         case apiMinorVersion = "Minor Version"

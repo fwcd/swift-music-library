@@ -1,5 +1,5 @@
 /// The kind of media.
-public struct MediaKind: RawRepresentable, Codable, Hashable {
+public struct MediaKind: RawRepresentable, Codable, Hashable, Sendable {
     public var rawValue: String
 
     /// The media item is a song.

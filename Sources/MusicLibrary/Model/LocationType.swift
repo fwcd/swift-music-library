@@ -1,5 +1,5 @@
 /// A track location kind.
-public struct LocationType: RawRepresentable, Codable, Hashable {
+public struct LocationType: RawRepresentable, Codable, Hashable, Sendable {
     public var rawValue: String
 
     public static var file = Self(rawValue: "File")

@@ -1,5 +1,5 @@
 /// The kind of playlist.
-public struct PlaylistKind: RawRepresentable, Codable, Hashable {
+public struct PlaylistKind: RawRepresentable, Codable, Hashable, Sendable {
     public var rawValue: String
 
     /// A regular/manual playlist.

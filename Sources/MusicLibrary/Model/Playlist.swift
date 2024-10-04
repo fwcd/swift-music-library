@@ -1,7 +1,7 @@
 import Foundation
 
 /// A list of tracks.
-public struct Playlist: Codable, Hashable, Identifiable {
+public struct Playlist: Codable, Hashable, Identifiable, Sendable {
     public enum CodingKeys: String, CodingKey {
         case name = "Name"
         case description = "Description"

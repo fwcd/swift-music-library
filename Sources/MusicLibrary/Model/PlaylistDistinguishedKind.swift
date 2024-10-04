@@ -1,5 +1,5 @@
 /// A special kind of playlist.
-public struct PlaylistDistinguishedKind: RawRepresentable, Codable, Hashable {
+public struct PlaylistDistinguishedKind: RawRepresentable, Codable, Hashable, Sendable {
     public var rawValue: String
 
     /// A playlist containing all music.
