@@ -1,4 +1,5 @@
 {
+  "originHash" : "4be00b0894f9f620c1811f38697def99c74511e52e4b7d8e3946425160f05abc",
   "pins" : [
     {
       "identity" : "sqlite.swift",
@@ -32,10 +33,10 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/fwcd/swift-ordered-plist-encoder.git",
       "state" : {
-        "revision" : "e228028933ca3b32f06cfe5a13b1de858d61c3f5",
-        "version" : "2.0.0"
+        "revision" : "62e360e2036f5e1c77f88a7612abe4d11b7213ee",
+        "version" : "2.0.3"
       }
     }
   ],
-  "version" : 2
+  "version" : 3
 }
