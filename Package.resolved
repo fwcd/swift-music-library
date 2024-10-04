@@ -32,8 +32,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/fwcd/swift-ordered-plist-encoder.git",
       "state" : {
-        "revision" : "056bd9d08ea12aa7daa2b5fdbe4c1dc5c6991493",
-        "version" : "1.0.0"
+        "revision" : "e228028933ca3b32f06cfe5a13b1de858d61c3f5",
+        "version" : "2.0.0"
       }
     }
   ],

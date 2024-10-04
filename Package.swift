@@ -5,6 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "swift-music-library",
+    platforms: [.macOS(.v13)],
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
@@ -15,7 +16,7 @@ let package = Package(
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         .package(url: "https://github.com/apple/swift-docc-plugin.git", from: "1.1.0"),
-        .package(url: "https://github.com/fwcd/swift-ordered-plist-encoder.git", from: "1.0.0"),
+        .package(url: "https://github.com/fwcd/swift-ordered-plist-encoder.git", from: "2.0.0"),
         .package(url: "https://github.com/stephencelis/SQLite.swift.git", from: "0.14.1"),
     ],
     targets: [
