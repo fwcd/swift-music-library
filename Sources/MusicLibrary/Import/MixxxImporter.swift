@@ -1,6 +1,8 @@
 import SQLite
 import Foundation
 
+private typealias Expression = SQLite.Expression
+
 private let home = FileManager.default.homeDirectoryForCurrentUser
 #if os(macOS)
 private let mixxxConfigRoot = "\(home)/Library/Containers/org.mixxx.mixxx/Data/Library/Application Support/Mixxx"
