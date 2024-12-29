@@ -5,4 +5,8 @@ public struct TrackReference: Codable, Hashable, Sendable {
     }
 
     public var trackId: Int
+
+    public init(trackId: Int) {
+        self.trackId = trackId
+    }
 }
